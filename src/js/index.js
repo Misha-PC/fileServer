@@ -1,5 +1,6 @@
 var fileId = 0;
 var selectFileId = -1;
+var fileSelecded = false;
 
 addEventListener("keyup", keyRemoveFile);
 
@@ -11,7 +12,7 @@ function keyRemoveFile(e){
 
 function getCookie(){
     alert(document.cookie);
-    // parseCookieName(document.cookie);  
+    // parseCookieName(document.cookie);
     // parseCookieName_V2();
 
 }
@@ -19,17 +20,17 @@ function getCookie(){
 function parseCookieName_V2(){
     arr = [];
     var two = document.cookie.split(';');
-    while(name = two.pop()) 
-        arr[arr.length] = name.split('=')[0]    
+    while(name = two.pop())
+        arr[arr.length] = name.split('=')[0]
     console.log(arr);
-    
+
     return(arr);
 }
 
 function parseCookieName(cookie){
-    
+
     arr = [];
-    word = "";    
+    word = "";
     boolKey = true;
 
     for(i = 0; i < cookie.length; i++){
@@ -59,7 +60,7 @@ function createFileDiv(inArr){
     inArr.forEach(function(item, i, arr) {
         console.log(item);
         addFile(item[0], item[1], item[2], item[3]);
-    });    
+    });
 }
 
 function clearCookie_(){
@@ -70,13 +71,13 @@ function clearCookie_(){
 
 
 function out(){
-    document.cookie = "id=-1";    
+    document.cookie = "id=-1";
     window.location = "login.php";
 }
 
 function selectFile(id){
     // console.log("old:" + selectFileId + "   new:" + id);
-    
+
     if(selectFileId == id){
         document.getElementById('file_'+selectFileId).classList.remove('selected');
         selectFileId = -1;
@@ -107,20 +108,25 @@ function removeFileFromServer(){
     xmlHttp.open( "GET", url, false ); // false for synchronous request
     xmlHttp.send( null );
     console.log(xmlHttp.responseText);
-    
+
     return xmlHttp.responseText;
 }
 
 
-function upload(file) {
+function upload() {
 
+
+  var inp = document.getElementById("f1");
+  var file = inp.files[0];
+  console.log(file);
+  if (file) {
     var xhr = new XMLHttpRequest();
-  
     // обработчик для отправки
     xhr.upload.onprogress = function(event) {
       console.log(event.loaded + ' / ' + event.total);
     }
-  
+
+
     // обработчики успеха и ошибки
     // если status == 200, то это успех, иначе ошибка
     xhr.onload = xhr.onerror = function() {
@@ -130,63 +136,63 @@ function upload(file) {
         console.log("error " + this.status);
       }
     };
-  
+
     xhr.open("POST", "file.php", true);
+
+
+    xhr.onreadystatechange = function() {
+      console.log(xhr.responseText);
+    }
+    // console.log(xhr.responseText);
+
     // xhr.open("POST", "file.js", true);
     xhr.send(file);
-  
+  }
 }
 
 function select(){
+
     document.getElementById("f1").click();
 
-    var inp = document.forms.uploader.userfile;
-    while(document.forms.uploader.userfile == 0){}
-    // var inp = document.getElementById();
-    var file = inp.files[0];
-    console.log(file);
-    if (file) {
-        upload(file);
-    }
+    oldFile = document.forms.uploader.userfile.name;
 
-    document.forms.uploader.userfile.files[0] = 0;
-    console.log("teeesst:: " + document.forms.uploader.userfile.files[0]);
-    
+
+
 }
 
 function addFile(id, name, edit, size){
     // var id = fileId++;
-    
+
     let tr = document.createElement('tr');
     tr.classList.add('file');
     tr.id = "file_"+id;
     tr.onclick = function(){ selectFile(id)};
 
-    let td = document.createElement('td');    
+    let td = document.createElement('td');
     td.classList.add('fileName');
     td.title = 'File name';
     td.innerText = name;
     tr.append(td);
 
-    td = document.createElement('td');    
+    td = document.createElement('td');
     td.classList.add('fileOvner');
     td.title = 'Ovner';
     td.innerText = 'Я';
     tr.append(td);
 
-    td = document.createElement('td');    
+    td = document.createElement('td');
     td.classList.add('fileLastEdit');
     td.title = 'Last edit';
     td.innerText = edit;
     tr.append(td);
 
-    td = document.createElement('td');    
+    td = document.createElement('td');
     td.classList.add('fileSize');
     td.title = 'File size';
     td.innerText = size;
     tr.append(td);
 
-    td = document.createElement('td');    
+    td = document.createElement('td');
     td.classList.add('fileStart');
     td.title = 'Print';
     tr.append(td);

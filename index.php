@@ -18,7 +18,7 @@
 
   <table class="allFile" >
   <tbody id="files">
-     
+
     <tr class="fileHead">
       <td class="fileName"     > name </td>
       <td class="fileOvner"    > ovner </td>
@@ -32,19 +32,19 @@
 
   </table>
 
-  <div class="fileList"> 
-  
+  <div class="fileList">
+
   </div>
 </div>
 
 <div class="newFile" onclick="select()">
- 
+
   <div id="p1"></div>
   <div id="p2"></div>
 </div>
 
 <form name="uploader" enctype="multipart/form-data" method="POST">
-        <input name="userfile" type="file" id="f1" />
+        <input name="userfile" type="file" id="f1" onchange="upload()" />
         <button type="submit" name="submit"></button>
   </form>
 
@@ -57,15 +57,15 @@
 
 
   <div class="divOut">
-    <span class="outTooltip" onclick="out()">Out</span>  
+    <span class="outTooltip" onclick="out()">Out</span>
   </div>
 </div>
- 
+
 <!-- <div class="divUpload"></div> -->
 
 
 
-<?php 
+<?php
 
 function getFilesArray(){
   $servername = "localhost";
