@@ -54,10 +54,7 @@
 </form>
 
 <div class="divHead">
-  <div class="divMenuItem" onclick="addFile('file name 223')">Add file</div>
   <div class="divMenuItem" onclick="removeFile()">Remove file</div>
-  <div class="divMenuItem" onclick="getCookie()">get cookie</div>
-  <div class="divMenuItem" onclick="getTime()">get time</div>
   <div class="divMenuItem" onclick="clearCookie_()">clear cookie</div>
 
 

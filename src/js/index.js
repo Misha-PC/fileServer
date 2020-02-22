@@ -142,6 +142,7 @@ function upload() {
         xhr.onload = xhr.onerror = function() {
             if (this.status == 200) {
                 console.log("success");
+                // addFile()
             } 
             else {
                 console.log("error " + this.status);
@@ -160,11 +161,16 @@ function upload() {
 
         xhr.open("post","file.php",true);
         xhr.send(form);
-
+        var lastID = 0;
         xhr.onreadystatechange = function() {
-            console.log(xhr.responseText);
+            var id = xhr.responseText;
+            if(id && id != lastID){
+                lastID = id;
+                console.log(id);
+                addFile(id, file['name'], file['lastModified'], file['size']);
+            }
         }
-  }
+    }
 }
 
 
@@ -177,6 +183,8 @@ function select(){
 
 
 }
+
+
 
 function addFile(id, name, edit, size){
     // var id = fileId++;
