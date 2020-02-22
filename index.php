@@ -35,24 +35,29 @@
   <div class="fileList">
 
   </div>
+
+
+
 </div>
+
 
 <div class="newFile" onclick="select()">
 
   <div id="p1"></div>
   <div id="p2"></div>
 </div>
+<div id="bar"class="bar"><div id="progress" class="progress"></div></div>
 
 <form name="uploader" enctype="multipart/form-data" method="POST">
         <input name="userfile" type="file" id="f1" onchange="upload()" />
         <button type="submit" name="submit"></button>
-  </form>
+</form>
 
 <div class="divHead">
   <div class="divMenuItem" onclick="addFile('file name 223')">Add file</div>
   <div class="divMenuItem" onclick="removeFile()">Remove file</div>
   <div class="divMenuItem" onclick="getCookie()">get cookie</div>
-  <div class="divMenuItem" onclick="setCookie()">set cookie</div>
+  <div class="divMenuItem" onclick="getTime()">get time</div>
   <div class="divMenuItem" onclick="clearCookie_()">clear cookie</div>
 
 

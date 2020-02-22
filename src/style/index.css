@@ -228,3 +228,31 @@
 form{
   display: none;
 }
+
+
+.bar{
+  bottom: 15px;
+  position: fixed;
+  left: 50%;
+  margin: 0 0 0 -150px;
+
+  height: 10px;
+  width: 300px;
+
+  background: lightgray;
+  border-radius: 10px;
+  transition: 4s;
+  transform:  4s;
+  display: none;
+}
+
+.barShow{
+  display: block;
+}
+
+.progress{
+    height: 10px;
+    width: 0%;
+    background: gray;
+    border-radius: 8px;
+}

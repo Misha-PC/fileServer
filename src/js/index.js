@@ -12,9 +12,6 @@ function keyRemoveFile(e){
 
 function getCookie(){
     alert(document.cookie);
-    // parseCookieName(document.cookie);
-    // parseCookieName_V2();
-
 }
 
 function parseCookieName_V2(){
@@ -52,8 +49,9 @@ function parseCookieName(cookie){
     return(arr);
 }
 
-function setCookie(){
-    document.cookie = "user=Misha;";
+function parseTime(unixTime){
+    var date = new Date(unixTime);
+    return(date.getDate() + "." + date.getUTCMonth() + "." + date.getFullYear());
 }
 
 function createFileDiv(inArr){
@@ -112,43 +110,63 @@ function removeFileFromServer(){
     return xmlHttp.responseText;
 }
 
+function getCookie(name) {
+    let matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+}
 
 function upload() {
 
-
-  var inp = document.getElementById("f1");
-  var file = inp.files[0];
-  console.log(file);
-  if (file) {
-    var xhr = new XMLHttpRequest();
-    // обработчик для отправки
-    xhr.upload.onprogress = function(event) {
-      console.log(event.loaded + ' / ' + event.total);
-    }
-
-
-    // обработчики успеха и ошибки
-    // если status == 200, то это успех, иначе ошибка
-    xhr.onload = xhr.onerror = function() {
-      if (this.status == 200) {
-        console.log("success");
-      } else {
-        console.log("error " + this.status);
-      }
-    };
-
-    xhr.open("POST", "file.php", true);
+    var inp = document.getElementById("f1");
+    var file = inp.files[0];
+    
+    if (file) {
+        console.log(file);
+        var xhr = new XMLHttpRequest();
+        
+        document.getElementById('bar').classList.add("barShow");
+        
+        xhr.upload.onprogress = function(event) {
+            progress =event.loaded /  event.total; 
+            document.getElementById('progress').style.width = (progress)*100 + "%";
+            if(progress == 1){
+                let closeBar = setTimeout(function(){
+                    document.getElementById('bar').classList.remove("barShow");
+                }, 1600);
+            }
+        }
 
 
-    xhr.onreadystatechange = function() {
-      console.log(xhr.responseText);
-    }
-    // console.log(xhr.responseText);
+        xhr.onload = xhr.onerror = function() {
+            if (this.status == 200) {
+                console.log("success");
+            } 
+            else {
+                console.log("error " + this.status);
+            }
+        };
 
-    // xhr.open("POST", "file.js", true);
-    xhr.send(file);
+        form = new FormData();
+
+        console.log(file);
+                
+
+        form.append("file", file);
+        form.append("last_edit", parseTime( file['lastModified']));
+        form.append("user_id", getCookie('id'));
+        form.append("size", file['size']);
+
+        xhr.open("post","file.php",true);
+        xhr.send(form);
+
+        xhr.onreadystatechange = function() {
+            console.log(xhr.responseText);
+        }
   }
 }
+
 
 function select(){
 
