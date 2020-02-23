@@ -55,7 +55,8 @@
 
 <div class="divHead">
   <div class="divMenuItem" onclick="removeFile()">Remove file</div>
-  <div class="divMenuItem" onclick="clearCookie_()">clear cookie</div>
+  <div class="divMenuItem" onclick="downloadFile()">Download</div>
+  <div class="divMenuItem" onclick="startFile()">Start</div>
 
 
   <div class="divOut">

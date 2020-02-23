@@ -100,6 +100,17 @@ function removeFile(){
     }
 }
 
+function startFile(){
+    if(selectFileId != -1){
+    }
+}
+function downloadFile(){
+    if(selectFileId != -1){
+        
+    }
+}
+
+
 function removeFileFromServer(){
     var xmlHttp = new XMLHttpRequest();
     var url = "remove.php?id=" + selectFileId;
