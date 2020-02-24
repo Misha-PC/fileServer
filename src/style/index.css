@@ -36,10 +36,12 @@
 
 
 .fileName{
-  width: 50%;
+  /* width: 50%; */
 }
 
-/* .fileOvner{} */
+.fileOvner{
+  width: 150px;
+}
 
 .fileLastEdit{
   width: 10%;

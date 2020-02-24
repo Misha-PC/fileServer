@@ -14,23 +14,15 @@ if (!$link) {
 
 $id = $_GET['id'];
 
-
-
 $query = "select patch from files where id='$id';";
-
 $result = $link->query($query);
 
-
-$file = 'saved_files/'.mysqli_fetch_assoc($result)['patch'];
+$file = mysqli_fetch_assoc($result)['patch'];
 
 unlink($file);
-
-
 $query = "delete from files where id='$id';";
 
 $link->query($query);
-
-
 echo "true";
 
 ?>

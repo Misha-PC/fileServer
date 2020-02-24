@@ -24,7 +24,7 @@
       <td class="fileOvner"    > ovner </td>
       <td class="fileLastEdit" > Last edit</td>
       <td class="fileSize"     > size </td>
-      <td class="fileStartHead"> start </td>
+      <!-- <td class="fileStartHead"> start </td> -->
     </tr>
 
     </tbody>

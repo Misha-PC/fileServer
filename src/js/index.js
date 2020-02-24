@@ -232,7 +232,7 @@ function addFile(id, name, edit, size){
     td = document.createElement('td');
     td.classList.add('fileStart');
     td.title = 'Print';
-    tr.append(td);
+    // tr.append(td);
 
 
     document.getElementById('files').append(tr);
