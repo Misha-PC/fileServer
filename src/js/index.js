@@ -100,13 +100,16 @@ function removeFile(){
     }
 }
 
+
 function startFile(){
     if(selectFileId != -1){
     }
 }
+
+
 function downloadFile(){
     if(selectFileId != -1){
-        
+        window.open("download.php?id=" + selectFileId);    
     }
 }
 
@@ -121,12 +124,14 @@ function removeFileFromServer(){
     return xmlHttp.responseText;
 }
 
+
 function getCookie(name) {
     let matches = document.cookie.match(new RegExp(
         "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
     ));
     return matches ? decodeURIComponent(matches[1]) : undefined;
 }
+
 
 function upload() {
 
@@ -191,9 +196,14 @@ function select(){
 }
 
 
-
 function addFile(id, name, edit, size){
     // var id = fileId++;
+
+    
+    size  = 
+            size > 1000000? (size / 1000000).toFixed(1) + ' Mb' :
+            size > 1000?    (size / 1000)   .toFixed(1) + ' Kb' :
+            size + " b";
 
     let tr = document.createElement('tr');
     tr.classList.add('file');

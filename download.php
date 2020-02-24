@@ -1,8 +1,5 @@
 <?php
 
-
-/* я люблю тебя */
-
 $servername = "localhost";
 $username = "server";
 $password = "00001";
@@ -18,15 +15,20 @@ if (!$link) {
     die('Ошибка соединения: ' . mysql_error());
 }
 
+
 $id = $_GET['id'];
 
-$query = "select patch from files where id='$id';";
+$query = "select file_name from files where id='$id';";
 
 $result = $link->query($query);
 
-echo mysqli_fetch_assoc($result)['patch'];
+$name =  mysqli_fetch_assoc($result)['file_name'];
 
-echo $patch;
 
+header("Cache-Control: public");
+header("Content-Description: File Transfer");
+header("Content-Disposition: attachment; filename=$name ");
+header("Content-Transfer-Encoding: binary");    
+readfile("saved_files/$name");
 
 ?>
