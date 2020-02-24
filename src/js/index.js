@@ -103,6 +103,8 @@ function removeFile(){
 
 function startFile(){
     if(selectFileId != -1){
+        window.open("start.php?id=" + selectFileId);    
+
     }
 }
 
