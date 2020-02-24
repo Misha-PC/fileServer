@@ -103,8 +103,12 @@ function removeFile(){
 
 function startFile(){
     if(selectFileId != -1){
-        window.open("start.php?id=" + selectFileId);    
-
+        // window.open("start.php?id=" + selectFileId);    
+        document.getElementById('file_'+selectFileId).classList.remove('selected');
+        var xhr = new XMLHttpRequest();
+        xhr.open("post","start.php?id="+ selectFileId,true);
+        xhr.send();
+        selectFileId = -1;
     }
 }
 
