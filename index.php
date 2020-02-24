@@ -24,33 +24,27 @@
       <td class="fileOvner"    > ovner </td>
       <td class="fileLastEdit" > Last edit</td>
       <td class="fileSize"     > size </td>
-      <td class="fileStartHead"> start </td>
+      <!-- <td class="fileStartHead"> start </td> -->
     </tr>
 
     </tbody>
 
 
   </table>
-
-  <div class="fileList">
-
-  </div>
-
-
-
+  <!-- <div class="fileList"></div> -->
 </div>
 
 
 <div class="newFile" onclick="select()">
-
   <div id="p1"></div>
   <div id="p2"></div>
 </div>
+
+
 <div id="bar"class="bar"><div id="progress" class="progress"></div></div>
 
 <form name="uploader" enctype="multipart/form-data" method="POST">
         <input name="userfile" type="file" id="f1" onchange="upload()" />
-        <button type="submit" name="submit"></button>
 </form>
 
 <div class="divHead">
@@ -58,7 +52,7 @@
   <div class="divMenuItem" onclick="downloadFile()">Download</div>
   <div class="divMenuItem" onclick="startFile()">Start</div>
 
-
+  
   <div class="divOut">
     <span class="outTooltip" onclick="out()">Out</span>
   </div>
@@ -98,7 +92,6 @@ function getFilesArray(){
       $outArray[$index++] = $tmp;
     }
   }
-
     return $outArray;
 }
 
@@ -113,9 +106,5 @@ function arrToStr($arr){
 
 echo '<script> createFileDiv(' . arrToStr(getFilesArray()) . ') </script>';
 
-
 ?>
-
-
-
 </body>

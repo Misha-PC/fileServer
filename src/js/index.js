@@ -178,7 +178,7 @@ function upload() {
             if(id && id != lastID){
                 lastID = id;
                 console.log(id);
-                addFile(id, file['name'], file['lastModified'], file['size']);
+                addFile(id, file['name'], parseTime( file['lastModified']), file['size']);
             }
         }
     }
@@ -186,13 +186,8 @@ function upload() {
 
 
 function select(){
-
     document.getElementById("f1").click();
-
     oldFile = document.forms.uploader.userfile.name;
-
-
-
 }
 
 
@@ -232,7 +227,7 @@ function addFile(id, name, edit, size){
     td = document.createElement('td');
     td.classList.add('fileStart');
     td.title = 'Print';
-    tr.append(td);
+    // tr.append(td);
 
 
     document.getElementById('files').append(tr);
